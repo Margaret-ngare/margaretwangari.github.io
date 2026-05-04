@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Margaret Wangari — Business Consultant & Operations Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=IM+Fell+English:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #0D1B2A;
+    --navy2:  #162436;
+    --gold:   #C9A84C;
+    --gold2:  #e8c96a;
+    --cream:  #F9F5EE;
+    --cream2: #EDE8DE;
+    --green:  #0F6B35;
+    --rose:   #8B2252;
+    --white:  #FFFFFF;
+    --gray:   #888;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+    mix-blend-mode: multiply;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: transform 0.18s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    opacity: 0.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 60px;
+    backdrop-filter: blur(14px);
+    background: rgba(13,27,42,0.82);
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    transition: padding 0.4s;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 600;
+    color: var(--cream); letter-spacing: 0.04em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(249,245,238,0.7);
+    text-decoration: none; transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--navy);
+    background: var(--gold); border: none;
+    padding: 10px 24px; cursor: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold2); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-pattern {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(201,168,76,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(15,107,53,0.08) 0%, transparent 40%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 140px 60px 80px 80px;
+    position: relative; z-index: 2;
+  }
+
+  .hero-tag {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-tag::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 6vw, 5.2rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--cream);
+    opacity: 0; animation: fadeUp 0.9s 0.35s forwards;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--gold);
+    display: block;
+  }
+
+  .hero-desc {
+    margin-top: 28px;
+    font-size: 1rem; font-weight: 300; line-height: 1.75;
+    color: rgba(249,245,238,0.65); max-width: 440px;
+    opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-method {
+    margin-top: 40px;
+    display: flex; gap: 0;
+    opacity: 0; animation: fadeUp 0.9s 0.65s forwards;
+  }
+  .method-pill {
+    padding: 8px 18px;
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: rgba(249,245,238,0.6);
+    border-right: none;
+    transition: all 0.3s;
+  }
+  .method-pill:last-child { border-right: 1px solid rgba(201,168,76,0.3); }
+  .method-pill:hover { background: rgba(201,168,76,0.1); color: var(--gold); }
+  .method-pill.active-pill {
+    background: var(--gold); color: var(--navy); font-weight: 600;
+  }
+
+  .hero-buttons {
+    margin-top: 48px; display: flex; gap: 16px;
+    opacity: 0; animation: fadeUp 0.9s 0.8s forwards;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 14px 36px; font-size: 0.78rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; border: none; cursor: none;
+    transition: background 0.3s, transform 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent; color: var(--cream);
+    padding: 14px 36px; font-size: 0.78rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 500; border: 1px solid rgba(249,245,238,0.3);
+    cursor: none; transition: all 0.3s; text-decoration: none; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-right {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    padding: 140px 80px 80px 40px;
+    opacity: 0; animation: fadeIn 1.2s 0.5s forwards;
+  }
+
+  .hero-portrait {
+    width: 360px; height: 460px;
+    background: linear-gradient(145deg, var(--navy2) 0%, #0a1520 100%);
+    position: relative;
+    display: flex; align-items: flex-end; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-portrait::before {
+    content: ''; position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.12) 0%, transparent 60%);
+    z-index: 1;
+  }
+  .hero-portrait::after {
+    content: 'MW';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem; font-weight: 300;
+    color: rgba(201,168,76,0.12);
+    letter-spacing: -0.05em;
+    z-index: 0;
+  }
+  .portrait-label {
+    position: absolute; bottom: 24px; left: 24px; right: 24px;
+    z-index: 2;
+    background: rgba(13,27,42,0.85);
+    backdrop-filter: blur(8px);
+    padding: 16px 20px;
+    border-left: 3px solid var(--gold);
+  }
+  .portrait-label p {
+    font-size: 0.78rem; color: var(--cream); font-weight: 500;
+  }
+  .portrait-label small {
+    font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* gold frame lines */
+  .frame-tl, .frame-br {
+    position: absolute; width: 60px; height: 60px;
+  }
+  .frame-tl { top: -12px; left: -12px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+  .frame-br { bottom: -12px; right: -12px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+  .hero-stats {
+    position: absolute; right: -20px; top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .stat-card {
+    background: var(--cream);
+    padding: 16px 20px; width: 130px;
+    border-left: 3px solid var(--gold);
+  }
+  .stat-card .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 600; color: var(--navy); line-height: 1;
+  }
+  .stat-card .lbl {
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray); margin-top: 4px; font-weight: 500;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--gold);
+    padding: 14px 0; overflow: hidden;
+  }
+  .marquee-inner {
+    display: flex; gap: 0;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    display: inline-flex; align-items: center; gap: 24px;
+    padding: 0 36px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--navy);
+  }
+  .marquee-dot { width: 5px; height: 5px; background: var(--navy); border-radius: 50%; opacity: 0.4; }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── SECTIONS GENERAL ── */
+  section { padding: 100px 80px; }
+  .section-tag {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+  }
+  .section-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300;
+    line-height: 1.15; color: var(--navy);
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .about-text p {
+    margin-top: 24px; font-size: 1rem; line-height: 1.85;
+    color: #444; font-weight: 300;
+  }
+  .about-text .highlight {
+    margin-top: 32px; padding: 24px 28px;
+    background: var(--cream); border-left: 4px solid var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-style: italic; line-height: 1.6;
+    color: var(--navy);
+  }
+  .about-right { position: relative; }
+  .opef-block {
+    background: var(--navy);
+    padding: 44px; position: relative;
+  }
+  .opef-block::before {
+    content: 'OPEF';
+    position: absolute; top: -20px; right: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; font-weight: 600;
+    color: rgba(201,168,76,0.08); line-height: 1;
+    pointer-events: none;
+  }
+  .opef-title {
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px; font-weight: 500;
+  }
+  .opef-step {
+    display: flex; gap: 20px; align-items: flex-start;
+    margin-bottom: 24px; padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .opef-step:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .opef-letter {
+    width: 42px; height: 42px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; color: var(--navy);
+  }
+  .opef-content h4 {
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--cream); margin-bottom: 4px;
+  }
+  .opef-content p {
+    font-size: 0.82rem; color: rgba(249,245,238,0.55); line-height: 1.5;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--cream); }
+  .services-intro { max-width: 560px; margin-bottom: 60px; }
+  .services-intro p { margin-top: 16px; font-size: 1rem; line-height: 1.75; color: #555; font-weight: 300; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .service-card {
+    background: var(--white); padding: 44px 36px;
+    position: relative; overflow: hidden;
+    transition: transform 0.4s;
+    cursor: none;
+  }
+  .service-card::before {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 3px;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .service-card:nth-child(1)::before { background: var(--green); }
+  .service-card:nth-child(2)::before { background: var(--gold); }
+  .service-card:nth-child(3)::before { background: var(--rose); }
+  .service-card:hover { transform: translateY(-6px); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; font-weight: 300;
+    color: rgba(13,27,42,0.06); line-height: 1;
+    margin-bottom: 20px;
+  }
+  .service-icon {
+    width: 44px; height: 44px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem; font-weight: 400; color: var(--navy);
+    margin-bottom: 14px; line-height: 1.3;
+  }
+  .service-card p {
+    font-size: 0.88rem; line-height: 1.75; color: #666; font-weight: 300;
+  }
+  .service-price {
+    margin-top: 28px; padding-top: 20px;
+    border-top: 1px solid var(--cream2);
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600;
+  }
+  .service-card:nth-child(1) .service-price { color: var(--green); }
+  .service-card:nth-child(2) .service-price { color: var(--gold); }
+  .service-card:nth-child(3) .service-price { color: var(--rose); }
+  .service-tags {
+    margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .service-tag {
+    padding: 4px 10px; border: 1px solid var(--cream2);
+    font-size: 0.65rem; letter-spacing: 0.08em; color: #888;
+    text-transform: uppercase;
+  }
+
+  /* ── PROCESS ── */
+  #process { background: var(--navy); color: var(--cream); }
+  #process .section-title { color: var(--cream); }
+  .process-steps {
+    margin-top: 60px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    position: relative;
+  }
+  .process-steps::before {
+    content: ''; position: absolute;
+    top: 32px; left: 10%; right: 10%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+  }
+  .process-step { padding: 0 24px; text-align: center; }
+  .step-circle {
+    width: 64px; height: 64px; margin: 0 auto 24px;
+    border: 1px solid rgba(201,168,76,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600; color: var(--gold);
+    position: relative; background: var(--navy);
+    transition: background 0.4s;
+  }
+  .process-step:hover .step-circle { background: var(--gold); color: var(--navy); }
+  .process-step h4 {
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 10px;
+  }
+  .process-step p {
+    font-size: 0.85rem; color: rgba(249,245,238,0.5); line-height: 1.65; font-weight: 300;
+  }
+
+  /* ── PACKAGES ── */
+  #packages { background: var(--cream2); }
+  .packages-grid {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  }
+  .package-card {
+    background: var(--white); padding: 40px 28px;
+    position: relative; transition: transform 0.3s;
+    cursor: none;
+  }
+  .package-card.featured {
+    background: var(--navy); margin: -16px 0;
+    padding: 56px 28px;
+  }
+  .package-card:hover { transform: translateY(-4px); }
+  .pkg-tag {
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 12px;
+  }
+  .package-card .pkg-tag { color: var(--gray); }
+  .package-card.featured .pkg-tag { color: var(--gold); }
+  .pkg-badge {
+    display: inline-block; padding: 3px 10px;
+    background: var(--gold); color: var(--navy);
+    font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 16px;
+  }
+  .pkg-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 400; line-height: 1.2;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .package-card.featured .pkg-name { color: var(--cream); }
+  .pkg-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600; color: var(--gold);
+    margin: 16px 0 4px;
+  }
+  .pkg-period {
+    font-size: 0.72rem; color: var(--gray); text-transform: uppercase;
+    letter-spacing: 0.08em; margin-bottom: 24px;
+  }
+  .pkg-divider {
+    height: 1px; background: var(--cream2);
+    margin: 24px 0;
+  }
+  .package-card.featured .pkg-divider { background: rgba(255,255,255,0.1); }
+  .pkg-features { list-style: none; margin-bottom: 32px; }
+  .pkg-features li {
+    padding: 7px 0; font-size: 0.83rem; color: #555;
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--cream2);
+    font-weight: 300;
+  }
+  .package-card.featured .pkg-features li { color: rgba(249,245,238,0.65); border-color: rgba(255,255,255,0.08); }
+  .pkg-features li::before {
+    content: '✓'; color: var(--gold);
+    font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+  }
+  .pkg-btn {
+    width: 100%; padding: 12px;
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; border: none; cursor: none;
+    transition: all 0.3s;
+  }
+  .package-card .pkg-btn { background: var(--cream2); color: var(--navy); }
+  .package-card .pkg-btn:hover { background: var(--navy); color: var(--cream); }
+  .package-card.featured .pkg-btn { background: var(--gold); color: var(--navy); }
+  .package-card.featured .pkg-btn:hover { background: var(--gold2); }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--white); }
+  .testimonials-grid {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .testimonial-card {
+    padding: 36px 32px; background: var(--cream);
+    border-top: 3px solid transparent;
+    transition: border-color 0.3s;
+    cursor: none;
+  }
+  .testimonial-card:hover { border-color: var(--gold); }
+  .quote-mark {
+    font-family: 'IM Fell English', serif;
+    font-size: 4rem; color: rgba(201,168,76,0.25);
+    line-height: 0.6; margin-bottom: 20px;
+  }
+  .testimonial-card p {
+    font-size: 0.9rem; line-height: 1.8; color: #555; font-style: italic;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+  }
+  .testimonial-author {
+    margin-top: 24px; display: flex; align-items: center; gap: 14px;
+  }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 600; color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    flex-shrink: 0;
+  }
+  .author-name {
+    font-size: 0.8rem; font-weight: 600; color: var(--navy);
+    letter-spacing: 0.04em;
+  }
+  .author-title { font-size: 0.7rem; color: var(--gray); margin-top: 2px; }
+
+  /* ── CTA STRIP ── */
+  #cta {
+    background: var(--gold);
+    padding: 80px; display: flex;
+    align-items: center; justify-content: space-between;
+    gap: 40px;
+  }
+  .cta-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 300;
+    color: var(--navy); line-height: 1.2;
+  }
+  .cta-text h2 strong { font-weight: 600; display: block; }
+  .cta-text p { margin-top: 12px; font-size: 0.9rem; color: rgba(13,27,42,0.65); }
+  .cta-actions { display: flex; gap: 14px; flex-shrink: 0; }
+  .btn-dark {
+    background: var(--navy); color: var(--cream);
+    padding: 15px 36px; font-size: 0.78rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; border: none; cursor: none;
+    transition: background 0.3s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-dark:hover { background: #1e3a52; }
+  .btn-outline-dark {
+    background: transparent; color: var(--navy);
+    padding: 15px 36px; font-size: 0.78rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; border: 2px solid var(--navy);
+    cursor: none; transition: all 0.3s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline-dark:hover { background: var(--navy); color: var(--cream); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+  .contact-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--navy); margin: 32px 0 20px; }
+  .contact-detail { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .detail-icon { width: 38px; height: 38px; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--gold); flex-shrink: 0; }
+  .detail-text small { display: block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); }
+  .detail-text span { font-size: 0.88rem; color: var(--navy); font-weight: 400; }
+  .contact-form { background: var(--white); padding: 44px; }
+  .contact-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--navy); margin-bottom: 28px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); font-weight: 500; margin-bottom: 8px; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 12px 16px;
+    background: var(--cream); border: 1px solid var(--cream2);
+    font-family: 'Outfit', sans-serif; font-size: 0.88rem; color: var(--navy);
+    outline: none; transition: border-color 0.3s; resize: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .submit-btn {
+    width: 100%; padding: 14px; background: var(--navy); color: var(--cream);
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; border: none; cursor: none; transition: background 0.3s;
+    margin-top: 8px;
+  }
+  .submit-btn:hover { background: #1e3a52; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); padding: 48px 80px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--cream); }
+  .footer-logo span { color: var(--gold); }
+  .footer-links { display: flex; gap: 28px; list-style: none; }
+  .footer-links a { font-size: 0.72rem; color: rgba(249,245,238,0.4); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 0.7rem; color: rgba(249,245,238,0.3); letter-spacing: 0.06em; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Margaret <span>Wangari</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Method</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Book a Call</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag">Business Consultant · Nairobi, Kenya</div>
+    <h1 class="hero-name">
+      Strategy that<br>
+      <em>works on the ground</em>
+    </h1>
+    <p class="hero-desc">
+      I help Kenyan businesses design their operations, execute their marketing, and grow sustainably — using the OPEF method: a systems-first approach that turns chaos into clarity.
+    </p>
+    <div class="hero-method">
+      <div class="method-pill active-pill">Observe</div>
+      <div class="method-pill">Process</div>
+      <div class="method-pill">Execute</div>
+      <div class="method-pill">Feedback</div>
+    </div>
+    <div class="hero-buttons">
+      <a href="#services" class="btn-primary">See My Services</a>
+      <a href="#process" class="btn-ghost">How I Work</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div style="position:relative;">
+      <div class="frame-tl"></div>
+      <div class="hero-portrait">
+        <div class="portrait-label">
+          <p>Margaret Wangari</p>
+          <small>Business Operations & Marketing Consultant</small>
+        </div>
+      </div>
+      <div class="frame-br"></div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="num">4+</div>
+        <div class="lbl">Years Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">3</div>
+        <div class="lbl">Service Lines</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">BCom</div>
+        <div class="lbl">Strathmore Uni</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <div class="marquee-item">Business Operations <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Marketing Strategy <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Process Design <span class="marquee-dot"></span></div>
+    <div class="marquee-item">MQN Events <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Systems Analysis <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Field Execution <span class="marquee-dot"></span></div>
+    <div class="marquee-item">OPEF Method <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Nairobi, Kenya <span class="marquee-dot"></span></div>
+    <!-- repeat for seamless loop -->
+    <div class="marquee-item">Business Operations <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Marketing Strategy <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Process Design <span class="marquee-dot"></span></div>
+    <div class="marquee-item">MQN Events <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Systems Analysis <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Field Execution <span class="marquee-dot"></span></div>
+    <div class="marquee-item">OPEF Method <span class="marquee-dot"></span></div>
+    <div class="marquee-item">Nairobi, Kenya <span class="marquee-dot"></span></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <div class="about-text">
+    <div class="section-tag">About</div>
+    <h2 class="section-title">Where business<br>education meets <em>real field experience</em></h2>
+    <p>I'm Margaret Wangari — a business operations and marketing consultant based in Nairobi, Kenya. I hold a Bachelor of Commerce (Entrepreneurship & Marketing) from Strathmore University and bring 4+ years of hands-on experience managing teams, running field operations, and building marketing systems that actually work in the Kenyan market.</p>
+    <p>What makes my approach different: I combine corporate-level strategy with grassroots execution ability. I've managed field teams in community markets, built WhatsApp outreach systems, designed performance tracking tools — and I understand M-Pesa, community dynamics, and the Nairobi SME market from the inside.</p>
+    <div class="highlight">
+      "I don't just give you a plan and leave. I observe your business, design your systems, execute with you, and review the results. That's the OPEF method — and it's how real transformation happens."
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="opef-block">
+      <div class="opef-title">My Methodology — The OPEF Model</div>
+      <div class="opef-step">
+        <div class="opef-letter">O</div>
+        <div class="opef-content">
+          <h4>Observe</h4>
+          <p>I study your business first. Interviews, process review, competitor analysis. No assumptions.</p>
+        </div>
+      </div>
+      <div class="opef-step">
+        <div class="opef-letter">P</div>
+        <div class="opef-content">
+          <h4>Process</h4>
+          <p>I map your current operations, identify gaps, and design a better system tailored to your context.</p>
+        </div>
+      </div>
+      <div class="opef-step">
+        <div class="opef-letter">E</div>
+        <div class="opef-content">
+          <h4>Execute</h4>
+          <p>We implement — together. Marketing campaigns, SOPs, training, field work. Real deliverables.</p>
+        </div>
+      </div>
+      <div class="opef-step">
+        <div class="opef-letter">F</div>
+        <div class="opef-content">
+          <h4>Feedback</h4>
+          <p>We review results, learn what worked, and iterate. Every engagement improves over time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="reveal">
+  <div class="services-intro">
+    <div class="section-tag">Services</div>
+    <h2 class="section-title">Three ways I can <em>help your business</em></h2>
+    <p>Whether you need your internal operations designed, your marketing executed, or a brand event that makes an impression — I bring structured methodology to every engagement.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">⚙️</div>
+      <h3>Business Operations Design</h3>
+      <p>I analyse how your business works, map your processes, and build the internal systems that let you scale without chaos — SOPs, reporting structures, team accountability frameworks.</p>
+      <div class="service-price">From KES 30,000 / project</div>
+      <div class="service-tags">
+        <span class="service-tag">Process Mapping</span>
+        <span class="service-tag">SOPs</span>
+        <span class="service-tag">Systems Design</span>
+        <span class="service-tag">HR Structure</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">📣</div>
+      <h3>Marketing & Field Execution</h3>
+      <p>Strategy you can actually execute — community marketing, WhatsApp campaigns, social media, field team management, and lead tracking systems built for the Kenyan market.</p>
+      <div class="service-price">From KES 25,000 / month</div>
+      <div class="service-tags">
+        <span class="service-tag">Field Marketing</span>
+        <span class="service-tag">WhatsApp Strategy</span>
+        <span class="service-tag">Social Media</span>
+        <span class="service-tag">Lead Systems</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">✨</div>
+      <h3>MQN Events & Brand Activations</h3>
+      <p>Memorable events that carry your brand forward — corporate gatherings, community activations, social events, and brand launches designed with aesthetic precision and operational rigour.</p>
+      <div class="service-price">From KES 50,000 / event</div>
+      <div class="service-tags">
+        <span class="service-tag">Corporate Events</span>
+        <span class="service-tag">Brand Activation</span>
+        <span class="service-tag">Community Events</span>
+        <span class="service-tag">MQN Brand</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="reveal">
+  <div style="text-align:center; max-width:560px; margin:0 auto;">
+    <div class="section-tag" style="justify-content:center;">How I Work</div>
+    <h2 class="section-title">Every engagement follows<br>the <em>same four steps</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-circle">O</div>
+      <h4>Observe</h4>
+      <p>Discovery call + business audit. I understand your situation before proposing anything.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">P</div>
+      <h4>Process</h4>
+      <p>I map what exists, identify gaps, and design your tailored solution in writing.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">E</div>
+      <h4>Execute</h4>
+      <p>We implement together. You get real deliverables — not just slides and recommendations.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">F</div>
+      <h4>Feedback</h4>
+      <p>Results review, iteration, and a documented system you can run after I leave.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages" class="reveal">
+  <div class="section-tag">Pricing</div>
+  <h2 class="section-title">Simple, transparent <em>packages</em></h2>
+  <div class="packages-grid">
+    <div class="package-card">
+      <div class="pkg-tag">Entry</div>
+      <div class="pkg-name">Diagnosis</div>
+      <div class="pkg-price">KES 15K</div>
+      <div class="pkg-period">One-time · 1 week</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>Business process audit</li>
+        <li>Written findings report</li>
+        <li>Priority gaps identified</li>
+        <li>Action recommendations</li>
+      </ul>
+      <button class="pkg-btn">Get Started</button>
+    </div>
+    <div class="package-card featured">
+      <div class="pkg-tag">Most Popular</div>
+      <div class="pkg-badge">Recommended</div>
+      <div class="pkg-name">Full Project</div>
+      <div class="pkg-price">KES 60K</div>
+      <div class="pkg-period">One-time · 30 days</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>Full OPEF engagement</li>
+        <li>One service line end-to-end</li>
+        <li>Weekly check-ins</li>
+        <li>All deliverables documented</li>
+        <li>30-day support after</li>
+      </ul>
+      <button class="pkg-btn">Book This</button>
+    </div>
+    <div class="package-card">
+      <div class="pkg-tag">Ongoing</div>
+      <div class="pkg-name">Retainer</div>
+      <div class="pkg-price">KES 40K</div>
+      <div class="pkg-period">Per month</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>Monthly marketing execution</li>
+        <li>Weekly reporting</li>
+        <li>Team accountability support</li>
+        <li>Strategy adjustments</li>
+      </ul>
+      <button class="pkg-btn">Get Started</button>
+    </div>
+    <div class="package-card">
+      <div class="pkg-tag">Premium</div>
+      <div class="pkg-name">Full Overhaul</div>
+      <div class="pkg-price">KES 200K</div>
+      <div class="pkg-period">60–90 days</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>All three service lines</li>
+        <li>Operations + Marketing + Events</li>
+        <li>Full team training</li>
+        <li>System handover & documentation</li>
+      </ul>
+      <button class="pkg-btn">Enquire</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="reveal">
+  <div class="section-tag">Testimonials</div>
+  <h2 class="section-title">What clients <em>say</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p>Margaret came in, observed how we were running things, and within a week had mapped out exactly where we were losing clients. Her systems approach is unlike anything we'd seen from a consultant before.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">JM</div>
+        <div>
+          <div class="author-name">James M.</div>
+          <div class="author-title">Director, Nairobi Logistics SME</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p>She built our entire WhatsApp marketing system from scratch — bilingual, structured, and actually engaging. Our community response rate went up significantly in the first month.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">FK</div>
+        <div>
+          <div class="author-name">Faith K.</div>
+          <div class="author-title">Owner, Retail Business, Eastlands</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p>The MQN brand activation event was executed flawlessly. Every detail was thought through. Margaret understands both the operational side and the aesthetic side — rare combination.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">AO</div>
+        <div>
+          <div class="author-name">Aisha O.</div>
+          <div class="author-title">Brand Manager, Nairobi Startup</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div id="cta" class="reveal">
+  <div class="cta-text">
+    <h2>Ready to build a business <strong>that actually works?</strong></h2>
+    <p>Book a free 30-minute discovery call. No commitment — just clarity.</p>
+  </div>
+  <div class="cta-actions">
+    <a href="#contact" class="btn-dark">Book a Free Call</a>
+    <a href="#packages" class="btn-outline-dark">View Packages</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <div class="contact-info">
+    <div class="section-tag">Contact</div>
+    <h2 class="section-title">Let's <em>talk</em></h2>
+    <p style="margin-top:16px; font-size:0.95rem; line-height:1.8; color:#555; font-weight:300;">
+      Whether you have a specific project in mind or just want to explore what's possible — I'd love to hear about your business and where you want to take it.
+    </p>
+    <h3>Get in Touch</h3>
+    <div class="contact-detail">
+      <div class="detail-icon">📧</div>
+      <div class="detail-text">
+        <small>Email</small>
+        <span>margaretirungu196@gmail.com</span>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="detail-icon">📞</div>
+      <div class="detail-text">
+        <small>Phone / WhatsApp</small>
+        <span>+254 795 207 906</span>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="detail-icon">📍</div>
+      <div class="detail-text">
+        <small>Location</small>
+        <span>Nairobi, Kenya</span>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="detail-icon">🔗</div>
+      <div class="detail-text">
+        <small>LinkedIn</small>
+        <span>linkedin.com/in/margaretwangari</span>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form">
+    <h3>Send a Message</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" placeholder="Your first name">
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" placeholder="Your last name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label>I'm Interested In</label>
+      <select>
+        <option>Business Operations Design</option>
+        <option>Marketing & Field Execution</option>
+        <option>MQN Events & Brand Activations</option>
+        <option>A Custom Package</option>
+        <option>Just Exploring</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Tell Me About Your Business</label>
+      <textarea rows="4" placeholder="Brief description of what you do and what challenge you're facing..."></textarea>
+    </div>
+    <button class="submit-btn">Send Message →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Margaret <span>Wangari</span></div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Method</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Margaret Wangari · Nairobi, Kenya</div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+  function animateRing() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animateRing); }
+  animateRing();
+  document.querySelectorAll('a,button,.service-card,.testimonial-card,.package-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width='18px'; cursor.style.height='18px'; ring.style.width='56px'; ring.style.height='56px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='36px'; ring.style.height='36px'; });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // OPEF pill cycle
+  const pills = document.querySelectorAll('.method-pill');
+  let current = 0;
+  setInterval(() => {
+    pills[current].classList.remove('active-pill');
+    current = (current + 1) % pills.length;
+    pills[current].classList.add('active-pill');
+  }, 1800);
+
+  // Nav compact on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 60) { nav.style.padding = '14px 60px'; } else { nav.style.padding = '22px 60px'; }
+  });
+</script>
+</body>
+</html>
